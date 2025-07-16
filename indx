@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأرقام المميزة - VIP Numbers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Filters */
+        .filters {
+            background: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .filter-group select, .filter-group input {
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .filter-group select:focus, .filter-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #5a6fd8;
+        }
+
+        /* Numbers Grid */
+        .numbers-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .number-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .number-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .number-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+            text-align: center;
+            direction: ltr;
+        }
+
+        .number-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .carrier {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .seller-info {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .seller-name {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .city {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: #218838;
+        }
+
+        /* Stats */
+        .stats {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+
+            .numbers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🔢 الأرقام المميزة</div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#numbers">الأرقام</a></li>
+                        <li><a href="#sell">بيع رقم</a></li>
+                        <li><a href="#login">تسجيل الدخول</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalNumbers">2,450</div>
+                    <div class="stat-label">رقم متاح</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalSold">1,200</div>
+                    <div class="stat-label">رقم مباع</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalSellers">180</div>
+                    <div class="stat-label">بائع نشط</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="avgPrice">750</div>
+                    <div class="stat-label">متوسط السعر (ريال)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="carrier">شركة الاتصالات</label>
+                    <select id="carrier">
+                        <option value="">جميع الشركات</option>
+                        <option value="stc">STC</option>
+                        <option value="mobily">موبايلي</option>
+                        <option value="zain">زين</option>
+                        <option value="virgin">فيرجن</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="city">المدينة</label>
+                    <select id="city">
+                        <option value="">جميع المدن</option>
+                        <option value="riyadh">الرياض</option>
+                        <option value="jeddah">جدة</option>
+                        <option value="dammam">الدمام</option>
+                        <option value="mecca">مكة</option>
+                        <option value="medina">المدينة</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="priceFrom">السعر من</label>
+                    <input type="number" id="priceFrom" placeholder="0">
+                </div>
+                <div class="filter-group">
+                    <label for="priceTo">السعر إلى</label>
+                    <input type="number" id="priceTo" placeholder="5000">
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="numberSearch">البحث في الرقم</label>
+                    <input type="text" id="numberSearch" placeholder="مثال: 555">
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="search-btn" onclick="filterNumbers()">بحث</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Numbers Section -->
+        <div class="numbers-section">
+            <h2 class="section-title">الأرقام المميزة المتاحة</h2>
+            <div class="numbers-grid" id="numbersGrid">
+                <!-- Numbers will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data
+        const numbersData = [
+            {
+                number: "0502424202",
+                price: 550,
+                carrier: "STC",
+                seller: "ابو سارة للارقام المميزة",
+                city: "الرياض",
+                type: "stc"
+            },
+            {
+                number: "0552666942",
+                price: 180,
+                carrier: "STC",
+                seller: "الـــعـــربـــي",
+                city: "الرياض",
+                type: "stc"
+            },
+            {
+                number: "0555666888",
+                price: 2500,
+                carrier: "STC",
+                seller: "متجر التميز vip",
+                city: "الرياض",
+                type: "stc"
+            },
+            {
+                number: "0553836353",
+                price: 300,
+                carrier: "STC",
+                seller: "أبو جود",
+                city: "الخبر",
+                type: "stc"
+            },
+            {
+                number: "0554343503",
+                price: 850,
+                carrier: "STC",
+                seller: "أبو جود",
+                city: "الخبر",
+                type: "stc"
+            },
+            {
+                number: "0533055339",
+                price: 450,
+                carrier: "STC",
+                seller: "أبو جود",
+                city: "الخبر",
+                type: "stc"
+            },
+            {
+                number: "0558911184",
+                price: 150,
+                carrier: "STC",
+                seller: "أبو جود",
+                city: "الخبر",
+                type: "stc"
+            },
+            {
+                number: "0541333316",
+                price: 1900,
+                carrier: "STC",
+                seller: "أبو جود",
+                city: "الخبر",
+                type: "stc"
+            },
+            {
+                number: "0535353958",
+                price: 1200,
+                carrier: "STC",
+                seller: "أبو جود",
+                city: "الخبر",
+                type: "stc"
+            },
+            {
+                number: "0563333254",
+                price: 1500,
+                carrier: "STC",
+                seller: "أبو جود",
+                city: "الخبر",
+                type: "stc"
+            }
+        ];
+
+        let filteredNumbers = [...numbersData];
+
+        function renderNumbers(numbers) {
+            const grid = document.getElementById('numbersGrid');
+            grid.innerHTML = '';
+
+            numbers.forEach(number => {
+                const card = document.createElement('div');
+                card.className = 'number-card';
+                card.innerHTML = `
+                    <div class="number-display">${number.number}</div>
+                    <div class="number-info">
+                        <div class="price">${number.price} ريال</div>
+                        <div class="carrier">${number.carrier}</div>
+                    </div>
+                    <div class="seller-info">
+                        <div class="seller-name">${number.seller}</div>
+                        <div class="city">${number.city}</div>
+                        <button class="contact-btn" onclick="contactSeller('${number.seller}')">تواصل مع البائع</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterNumbers() {
+            const carrier = document.getElementById('carrier').value;
+            const city = document.getElementById('city').value;
+            const priceFrom = parseFloat(document.getElementById('priceFrom').value) || 0;
+            const priceTo = parseFloat(document.getElementById('priceTo').value) || Infinity;
+            const numberSearch = document.getElementById('numberSearch').value;
+
+            filteredNumbers = numbersData.filter(number => {
+                const matchesCarrier = !carrier || number.type === carrier;
+                const matchesCity = !city || number.city.includes(getCityName(city));
+                const matchesPrice = number.price >= priceFrom && number.price <= priceTo;
+                const matchesNumber = !numberSearch || number.number.includes(numberSearch);
+
+                return matchesCarrier && matchesCity && matchesPrice && matchesNumber;
+            });
+
+            renderNumbers(filteredNumbers);
+        }
+
+        function getCityName(cityCode) {
+            const cities = {
+                'riyadh': 'الرياض',
+                'jeddah': 'جدة',
+                'dammam': 'الدمام',
+                'mecca': 'مكة',
+                'medina': 'المدينة'
+            };
+            return cities[cityCode] || cityCode;
+        }
+
+        function contactSeller(sellerName) {
+            alert(`سيتم توصيلك بـ ${sellerName} قريباً`);
+        }
+
+        // Initialize
+        renderNumbers(numbersData);
+    </script>
+</body>
+</html>
