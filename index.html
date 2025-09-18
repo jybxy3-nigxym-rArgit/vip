@@ -1,6 +1,290 @@
-<style>
-  body { background: #f0f0f0; }
-</style>
-<script>
-  alert("مرحباً!");
-</script>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأرقام المميزة</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .explanation, .examples {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: #6a11cb;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .example-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-right: 4px solid #6a11cb;
+        }
+        
+        .interactive {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .input-group {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        input {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 250px;
+            margin-left: 10px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            font-size: 18px;
+            min-height: 60px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .special {
+            color: #6a11cb;
+            font-weight: bold;
+        }
+        
+        .numbers-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .number-card {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .number-card:hover {
+            transform: scale(1.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .input-group {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            input {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الأرقام المميزة</h1>
+            <p>اكتشف عالم الأرقام المميزة والتي تسمى أيضاً أرقام ناريسيها أو أرقام أرمسترونغ</p>
+        </header>
+        
+        <div class="content">
+            <div class="explanation">
+                <h2>ما هي الأرقام المميزة؟</h2>
+                <p>الرقم المميز (أو رقم أرمسترونغ) هو رقم يساوي مجموع أرقامه مرفوعة إلى قوة عدد أرقامه.</p>
+                <p>مثال: الرقم 153 هو رقم مميز لأن:</p>
+                <p>1³ + 5³ + 3³ = 1 + 125 + 27 = 153</p>
+                <p>حيث أن الرقم 153 يتكون من 3 أرقام، لذلك نقوم برفع كل رقم إلى أس 3.</p>
+            </div>
+            
+            <div class="examples">
+                <h2>أمثلة على الأرقام المميزة</h2>
+                <div class="example-item">
+                    <h3>الرقم 371</h3>
+                    <p>3³ + 7³ + 1³ = 27 + 343 + 1 = 371</p>
+                </div>
+                <div class="example-item">
+                    <h3>الرقم 407</h3>
+                    <p>4³ + 0³ + 7³ = 64 + 0 + 343 = 407</p>
+                </div>
+                <div class="example-item">
+                    <h3>الرقم 1634</h3>
+                    <p>1⁴ + 6⁴ + 3⁴ + 4⁴ = 1 + 1296 + 81 + 256 = 1634</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="interactive">
+            <h2>تحقق من الرقم</h2>
+            <p>أدخل رقماً للتحقق مما إذا كان رقمًا مميزًا</p>
+            
+            <div class="input-group">
+                <input type="number" id="numberInput" placeholder="أدخل رقماً صحيحاً">
+                <button onclick="checkSpecialNumber()">تحقق</button>
+            </div>
+            
+            <div id="result"></div>
+        </div>
+        
+        <div class="interactive">
+            <h2>الأرقام المميزة بين 1 و 10000</h2>
+            <div class="numbers-list" id="specialNumbersList">
+                <!-- سيتم ملء هذه القائمة باستخدام JavaScript -->
+            </div>
+        </div>
+        
+        <footer>
+            <p>صمم هذه الصفحة لعرض الأرقام المميزة (أرقام أرمسترونغ)</p>
+        </footer>
+    </div>
+
+    <script>
+        // دالة للتحقق من إذا ما كان الرقم مميزاً
+        function isSpecialNumber(num) {
+            const digits = num.toString().split('');
+            const power = digits.length;
+            const sum = digits.reduce((total, digit) => total + Math.pow(parseInt(digit), power), 0);
+            return sum === num;
+        }
+        
+        // دالة للتحقق من الرقم المدخل من قبل المستخدم
+        function checkSpecialNumber() {
+            const input = document.getElementById('numberInput');
+            const resultDiv = document.getElementById('result');
+            const num = parseInt(input.value);
+            
+            if (isNaN(num) || num < 1) {
+                resultDiv.innerHTML = '<p class="special">الرجاء إدخال رقم صحيح موجب</p>';
+                return;
+            }
+            
+            if (isSpecialNumber(num)) {
+                resultDiv.innerHTML = `<p class="special">مبروك! الرقم ${num} هو رقم مميز</p>`;
+            } else {
+                resultDiv.innerHTML = `<p>الرقم ${num} ليس رقماً مميزاً</p>`;
+            }
+        }
+        
+        // دالة لعرض جميع الأرقام المميزة في نطاق معين
+        function displaySpecialNumbers() {
+            const numbersList = document.getElementById('specialNumbersList');
+            numbersList.innerHTML = '';
+            
+            for (let i = 1; i <= 10000; i++) {
+                if (isSpecialNumber(i)) {
+                    const numberCard = document.createElement('div');
+                    numberCard.className = 'number-card';
+                    numberCard.textContent = i;
+                    numbersList.appendChild(numberCard);
+                }
+            }
+        }
+        
+        // تشغيل الدالة عند تحميل الصفحة
+        window.onload = displaySpecialNumbers;
+    </script>
+</body>
+</html>
